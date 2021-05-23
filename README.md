@@ -12,10 +12,10 @@ It is not meant to be scalable to hundreds of users, but would still work just f
 
 ```shell
 # build
-$ docker build -t quickjupyterhub .
+$ docker build -t quick-jupyterhub .
 
 # run
-$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home --name quickjh quickjupyterhub
+$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home --name quickjh quick-jupyterhub
 ```
 
 You can then open the JupyterHub at [http://localhost:8000/](http://localhost:8000/) on your browser.
@@ -102,7 +102,7 @@ Note that this means a number of other files are included in that directory, and
 In practice, this seems to work fine.
 
 ```shell
-$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quickjupyterhub
+$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quick-jupyterhub
 ```
 
 Note that if we lose the users and their passwords, we still have their data by the persistent volume.
