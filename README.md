@@ -12,20 +12,21 @@ It is not meant to be scalable to hundreds of users, but would still work just f
 
 ```shell
 # build
-$ docker build -t quickjupyterhub .
+$ docker build -t quick-jupyterhub .
 
 # run
-$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home --name quickjh quickjupyterhub
+$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home --name quickjh quick-jupyterhub
 ```
 
 You can then open the JupyterHub at [http://localhost:8000/](http://localhost:8000/) on your browser.
 There are users named `admin` and `user1` already, and their passwords are the same as the username.
 
-## Add, delte, modify users
+## Add, delete, modify users
 
 In this configuration, the set of JupyterHub users is identical to the set of linux users in the system.
-Login with `admin`, and open the terminal. Then, modify users as in the linux system (the OS ubuntu).
-Make sure you also creates `/home/<username>/notebook` directory for new users (otherwise jupyterhub fails at this user's login).
+So we can manipulate users just like we do in the linux system (the OS is ubuntu).
+Login with `admin`, and open the terminal. Then, modify users by linux commands.
+When you create a user, make sure you also create `/home/<username>/notebook` directory (otherwise jupyterhub fails at this user's login).
 Also, the user must own the home directory to properly operate via the JupyterHub interface.
 
 ```shell
@@ -102,7 +103,7 @@ In practice, this seems to work fine.
 The launcher code will have another `-v` option like below:
 
 ```shell
-$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quickjupyterhub
+$ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quick-jupyterhub
 ```
 
 Note that if we lose the users and their passwords, we still have their data by the persistent volume.
