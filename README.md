@@ -98,7 +98,8 @@ This means, if you `docker stop quickjh` and run the image again, then you have 
 We may also want to keep the user list and their passwords, possibly changed during the session even after the container termination.
 A quick (and a bit ugly) way of doing this is to apply the docker volume to `/etc` directory, since user information is stored there.
 Note that this means a number of other files are included in that directory, and this may cause some problem.
-In practice, this seems to work fine.
+In practice, this seems to work fine. 
+The launcher code will have another `-v` option like below:
 
 ```shell
 $ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quickjupyterhub
@@ -112,4 +113,3 @@ Hence it is possible to redefine users based on the names of the subdirectories 
 # omit -m option since directory already exists
 $ sudo useradd missinguser
 ```
-So, we may omit this option if we prefer not to.
