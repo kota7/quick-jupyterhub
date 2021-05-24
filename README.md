@@ -30,7 +30,7 @@ When you create a user, make sure you also create `/home/<username>/notebook` di
 Also, the user must own the home directory to properly operate via the JupyterHub interface.
 
 ```shell
-# add user2 (change user2 to any name valid in the linux convention)
+# add user (change user2 to any name valid in the linux convention)
 $ sudo useradd -m user2 && \
   sudo mkdir /home/user2/notebook && \
   sudo chmod 700 /home/user2 && \
