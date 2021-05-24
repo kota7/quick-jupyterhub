@@ -30,7 +30,7 @@ When you create a user, make sure you also create `/home/<username>/notebook` di
 Also, the user must own the home directory to properly operate via the JupyterHub interface.
 
 ```shell
-# add user2 (change user2 to any name valid on the linux convention)
+# add user2 (change user2 to any name valid in the linux convention)
 $ sudo useradd -m user2 && \
   sudo mkdir /home/user2/notebook && \
   sudo chmod 700 /home/user2 && \
@@ -68,15 +68,15 @@ Note that `conda` won't work on the notebook cell, and `pip` would point to the 
 So, package installation must be done in the terminal.
 When you use `pip`, make sure you are using the one you intend by checking `which pip`.
 
-Here is a simple example of making conda-env into the kernel from the terminal.
+Here is a commnd example to make a conda-env and add it into the kernel.
 
 ```shell
 $ conda create -n testenv -y numpy tqdm ipykernel
 $ conda activate testenv
 $ python -m ipykernel install --user --name testenv_conda --display-name "testenv(conda)"
 ```
-We should see the new kernel after you reflesh the browser.
-Note that `--user` option add the kernelspec under the user's home directory, and thus not visible by other users.
+We should see the new kernel after refleshing the browser.
+Note that with `--user` option the kernel is added to the kernelspec under the user's home directory, and thus not visible by other users.
 
 
 We don't recommend system-wide install of `conda` since user permission is not easy to manage with it.
