@@ -98,7 +98,7 @@ This means, if you `docker stop quickjh` and run the image again, then you have 
 
 We may also want to keep the user list and their passwords, possibly changed during the session even after the container termination.
 A quick (and a bit ugly) way of doing this is to apply the docker volume to `/etc` directory, since user information is stored there.
-However, since that directory contains a number of other files as well, and this may cause some problem (especially when the container's OS updates. Perhaps there is no problem so long as we are reusing a same image).
+However, since that directory contains a number of other files as well (and some are sensitive), and this may cause some problem (especially when the container's OS updates. Perhaps there is no problem so long as we are reusing a same image).
 In practice, this seems to work fine. 
 To do so, the launcher code will have another `-v` option like below:
 
