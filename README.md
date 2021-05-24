@@ -84,10 +84,10 @@ We don't recommend system-wide install of `conda` since user permission is not e
 
 ## Make data persistent
 
-### Users notebooks and files
+### User notebooks and files
 
 The containers are ephemerial in a sense that files created during the container processes are discarded when the container is destroyed.
-Such files include users' notebooks and related files.
+Such files include users' notebooks and related files, which we don't want to lose.
 In order to keep these files persistent, we can use the [docker's volume feature](https://docs.docker.com/storage/volumes/).
 This is why we have `-v` option in the `docker run` command above.
 
@@ -98,16 +98,17 @@ This means, if you `docker stop quickjh` and run the image again, then you have 
 
 We may also want to keep the user list and their passwords, possibly changed during the session even after the container termination.
 A quick (and a bit ugly) way of doing this is to apply the docker volume to `/etc` directory, since user information is stored there.
-Note that this means a number of other files are included in that directory, and this may cause some problem.
+However, since that directory contains a number of other files as well, and this may cause some problem (especially when the container's OS updates. Perhaps there is no problem so long as we are reusing a same image).
 In practice, this seems to work fine. 
-The launcher code will have another `-v` option like below:
+To do so, the launcher code will have another `-v` option like below:
 
 ```shell
 $ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quick-jupyterhub
 ```
 
 Note that if we lose the users and their passwords, we still have their data by the persistent volume.
-Hence it is possible to redefine users based on the names of the subdirectories under `/home`.
+This means we only lose user's login feature.
+We can recover this loss by redefining users based on the names of the subdirectories under `/home`.
 
 ```shell
 # add user with home directory
