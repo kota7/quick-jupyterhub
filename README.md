@@ -54,17 +54,17 @@ Packages installed by a user is stored under the user's home directory and are n
 This way, user environments are natually separated.
 We have installed a few fundamental packages as root (particularly ones needed for running jupyter), which are shared among all users.
 To share more packages among users, login as admin and call `sudo pip` from the terminal.
-This can save disk space, but may also cause version compatibility problem.
+This can save disk space, but may also cause version compatibility problems.
 
 If we need external software to supplement the python packages, e.g. `apt install` is needed, then we need to ask admin user since we need `sudo` for this.
-And the `apt`-based software is shared among all users (since we share a same system. We may see this as the limitation of this approach).
+And the `apt`-based software is shared among all users (since we share the same system. We may see this as the limitation of this approach).
 
 ## Integrate conda-based environemnt
 
 Users may install `miniconda` on their home directory and build package environment using the `conda` feature (`conda create`).
 That environment can be added to the juptyer kernel and can be used from notebooks.
-This can be favorable option since `conda` allows us to manage not only python packages but other languages and external software.
-Note that `conda` won't work on the notebook cell, and `pip` would point to the root `pip`, instead of the one in the conda env.
+This can be a favorable option since `conda` allows us to manage not only python packages but other languages and external software.
+Note that `conda` command won't work on the notebook cell, and `pip` would point to the root `pip`, instead of the one in the conda env.
 So, package installation must be done in the terminal.
 When you use `pip`, make sure you are using the one you intend by checking `which pip`.
 
