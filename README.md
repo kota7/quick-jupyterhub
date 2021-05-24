@@ -75,7 +75,7 @@ $ conda create -n testenv -y numpy tqdm ipykernel
 $ conda activate testenv
 $ python -m ipykernel install --user --name testenv_conda --display-name "testenv(conda)"
 ```
-We should see the new kernel after refleshing the browser.
+We should see the new kernel after refreshing the browser.
 Note that with `--user` option the kernel is added to the kernelspec under the user's home directory, and thus not visible by other users.
 
 
