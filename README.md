@@ -98,16 +98,15 @@ This means, if you `docker stop quickjh` and run the image again, then you have 
 
 We may also want to keep the user list and their passwords, possibly changed during the session even after the container termination.
 A quick (and a bit ugly) way of doing this is to apply the docker volume to `/etc` directory, since user information is stored there.
-However, since that directory contains a number of other files as well (and some are sensitive), this may cause some problem (especially when the container's OS updates. Perhaps there is no problem so long as we are reusing a same image).
-In practice, this seems to work fine. 
-To do so, the launcher code will have another `-v` option like below:
+However, since that directory contains a number of other files as well (and some are sensitive), this may cause some problem (especially when the container's OS updates. Perhaps there is no problem so long as we are reusing the same image).
+To take this approach, the launcher code will have another `-v` option like below:
 
 ```shell
 $ docker run --rm -d -p 8000:8000 -v quickjh_home:/home  -v quickjh_etc:/etc --name quickjh quick-jupyterhub
 ```
 
 Note that if we lose the users and their passwords, we still have their data by the persistent volume.
-This means we only lose user's login feature.
+This means we only lose user's login capability, not their works.
 We can recover this loss by redefining users based on the names of the subdirectories under `/home`.
 
 ```shell
@@ -115,3 +114,5 @@ We can recover this loss by redefining users based on the names of the subdirect
 # omit -m option since directory already exists
 $ sudo useradd missinguser
 ```
+
+Since the recovery is not so hard, in some use cases it can be a reasonable choice to give up persisting the user list and passwords.
